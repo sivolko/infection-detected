@@ -1,0 +1,26 @@
+/*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+PROJECT: Atega Blog
+VERSION: 1.0
+-------------------------------------------------------------------*/
+
+// Utils
+@import "variables";
+@import "mixins";
+
+// Vendors
+@import "normalize";
+
+// Components
+@import "syntax";
+@import "post"; // Add post styles
+
+// Base Styles
+@import "base";
+
+// Layouts
+@import "layout";
+@import "header";
+@import "home";
+@import "grid";
+@import "footer";

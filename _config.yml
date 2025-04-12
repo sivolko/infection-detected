@@ -1,0 +1,74 @@
+# Site settings
+title: Infection Detected
+description: A platform for security engineer, Threat Hunter, and CTF player to share their knowledge and experience.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+permalink: /:title/
+
+# Pagination
+paginate: 6
+paginate_path: "/page/:num"
+
+# Author Settings
+author:
+  name: Shubhendu
+  avatar: https://media.licdn.com/dms/image/v2/D5622AQGlrbgYFDPgUA/feedshare-shrink_1280/B56ZYdkQWmGsAo-/0/1744252767350?e=1747267200&v=beta&t=lkAJE2tXjf5jSHUYkfOayDETtDK0V8JADg0zuEQSphk
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+
+collections:
+  posts:
+    output: true
+  tags:
+    output: true
+    permalink: /tags/:name/
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed
+  sourcemap: never
+  load_paths:
+    - _sass
+    - assets/css
+
+# Assets
+assets:
+  sources:
+    - assets/css
+    - assets/images
+    - assets/js
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Defaults
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
+      author: Shubhendu
+      comments: true
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Google Analytics
+google_analytics: "G-XXXXXXXXXX" # Replace this with your GA4 measurement ID

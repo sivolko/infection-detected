@@ -1,0 +1,22 @@
+.container {
+    @include container;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  
+  .col {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  // Grid system from your main.css
+  [class^="col-"] {
+    flex: auto;
+  }
+  
+  // Add your col-* classes here

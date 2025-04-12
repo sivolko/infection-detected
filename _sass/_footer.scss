@@ -1,0 +1,34 @@
+.footer {
+  padding: 60px 0;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--border-color);
+  @include transition(background-color);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__copy {
+    font-size: 0.875rem;
+    color: var(--text-alt-color);
+    margin: 0;
+  }
+  
+  &__social {
+    margin-bottom: 25px;
+  }
+
+  &__social-link {
+    padding: 0 10px;
+    font-size: 18px;
+    color: var(--text-alt-color);
+    @include transition(color);
+
+    &:hover {
+      color: var(--brand-color);
+    }
+  }
+}

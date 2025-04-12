@@ -1,0 +1,62 @@
+<section class="section popular-posts animate">
+    <div class="container">
+      <div class="section__head">
+        <h3 class="section__title">Popular Posts</h3>
+      </div>
+  
+      <div class="row">
+        {% for post in site.posts %}
+          {% if post.popular %}
+            <div class="article col col-4 col-d-6 col-t-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  <a
+                    class="article__image"
+                    href="{{ post.url | relative_url }}"
+                  >
+                    <img
+                      class="lazy"
+                      data-src="{{ post.image | relative_url }}"
+                      alt="{{ post.title }}"
+                    />
+                  </a>
+                </div>
+  
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="about/index.html"
+                      >{{ post.author }}</a
+                    >
+                    –
+                    <time
+                      class="article__date"
+                      datetime="{{ post.date | date_to_xmlschema }}"
+                      >{{ post.date | date: "%d %B, %Y" }}</time
+                    >
+                  </div>
+  
+                  <h2 class="article__title">
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                  </h2>
+  
+                  <p class="article__excerpt">
+                    {{ post.excerpt | strip_html | truncate: 100 }}
+                  </p>
+  
+                  <div class="article__tags">
+                    {% for tag in post.tags %}
+                      <a
+                        href="{{ '/tags/' | append: tag | relative_url }}"
+                        class="article__tag"
+                        >{{ tag }}</a
+                      >
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,89 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Add typography styles
+h1, h2, h3, h4, h5, h6 {
+  // Add heading styles
+}
+
+// Add link styles
+a {
+  text-decoration: none;
+  color: var(--link-color);
+  transition: all 0.35s;
+}
+
+// Container mixin
+@mixin container {
+  max-width: $container-max-width;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+  margin: 0 auto;
+}
+
+// Media query mixins
+@mixin breakpoint($point) {
+  @if $point == xl {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+  @else if $point == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  }
+  @else if $point == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  }
+  @else if $point == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  }
+}
+
+// Flexbox mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Transitions
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Typography
+@mixin font-smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Box shadow
+@mixin box-shadow {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+// Button reset
+@mixin button-reset {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  appearance: none;
+}

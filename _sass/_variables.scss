@@ -1,0 +1,82 @@
+// Base Colors
+$brand-color: #ff009f;
+$white: #fff;
+$light-blue: #f9f9fc;
+$light-gray: #f0f0f0;
+$lighten-gray: #ededf3;
+$blue-gray: #4c526c;
+$gray: #9e9e9e;
+$dark: #17181e;
+
+// Typography
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-size-base: 16px;
+$line-height-base: 1.6;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Container
+$container-max-width: 1270px;
+$container-padding: 15px;
+
+// CSS Variables
+:root {
+  // Colors
+  --brand-color: #{$brand-color};
+  --white: #{$white};
+  --light-blue: #{$light-blue};
+  --light-gray: #{$light-gray};
+  --lighten-gray: #{$lighten-gray};
+  --blue-gray: #{$blue-gray};
+  --gray: #{$gray};
+  --dark: #{$dark};
+
+  // Light Mode
+  --heading-font-color: #17181e; /* Default for light mode */
+  --background-color: #f9f9fc;
+  --background-alt-color: #ffffff;
+  --background-alt-color-2: var(--lighten-gray);
+  --text-color: #17181e;
+  --text-alt-color: var(--blue-gray);
+  --link-color: #17181e;
+  --link-color-hover: #ff009f;
+  --button-color: var(--white);
+  --button-background-color: var(--brand-color);
+  --button-background-hover: #{darken($brand-color, 5%)};
+  --border-color: #ededf3;
+  --border-alt-color: var(--lighten-gray);
+  --th-color: var(--lighten-gray);
+  --tr-color: var(--lighten-gray);
+  --syntax-highlighting-background: var(--lighten-gray);
+}
+
+// Dark Mode
+[dark]:root {
+  --brand-color: #{$brand-color};
+  --white: #{$white};
+  --light-gray: #{$light-gray};
+  --gray: #{$gray};
+  --dark: #{$dark};
+
+  // Theme colors
+  --heading-font-color: #fafafa; /* For dark mode */
+  --background-color: #121212;
+  --background-alt-color: #1a1a1a;
+  --background-alt-color-2: #242427;
+  --text-color: #cdcdce;
+  --text-alt-color: #cdcdce;
+  --link-color: #fafafa;
+  --link-color-hover: #ff009f;
+  --button-color: #{$white};
+  --button-background-color: #{$brand-color};
+  --button-background-hover: darken($brand-color, 5%);
+  --border-color: #1a1a1a;
+  --border-alt-color: #121212;
+  --th-color: #121212;
+  --tr-color: #1a1a1a;
+  --syntax-highlighting-background: #1a1a1a;
+}

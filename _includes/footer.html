@@ -1,0 +1,238 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12 col-m-12">
+        <div class="footer__inner">
+          <div class="footer__head">
+            <div class="row">
+              <div class="col col-4 col-d-6 col-t-12">
+                <div class="widget widget-recent">
+                  <div class="widget__head">
+                    <h3 class="widget__title">Popular</h3>
+                  </div>
+
+                  {% for post in site.posts limit:2 %}
+                  <div class="recent-posts">
+                    <a
+                      class="recent-posts__image"
+                      href="{{ post.url }}"
+                    >
+                      <img
+                        class="lazy"
+                        data-src="{{ post.image | default: site.baseurl + '/assets/images/default.jpg' }}"
+                        alt="{{ post.title }}"
+                      />
+                    </a>
+
+                    <div class="recent-posts__content">
+                      <div class="recent-posts__date">
+                        <time datetime="{{ post.date | date_to_xmlschema }}">
+                          {{ post.date | date: "%B %d, %Y" }}
+                        </time>
+                      </div>
+                      <h4 class="recent-posts__title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                      </h4>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col col-4 col-d-6 col-t-12">
+                <div class="widget widget-gallery">
+                  <div class="widget__head">
+                    <h3 class="widget__title">Gallery</h3>
+                  </div>
+
+                  <div class="gallery-box gallery-footer">
+                    <div
+                      class="gallery"
+                      style="grid-template-columns: repeat(3, auto)"
+                    >
+                      <div class="gallery__image">
+                        <img
+                          src="{{ site.baseurl }}/assets/images/100.jpg"
+                          alt="Rest"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="gallery__image">
+                        <img
+                          src="{{ site.baseurl }}/assets/images/101.jpg"
+                          alt="Lifestyle"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="gallery__image">
+                        <img
+                          src="{{ site.baseurl }}/assets/images/102.jpg"
+                          alt="Hobby"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="gallery__image">
+                        <img
+                          src="{{ site.baseurl }}/assets/images/103.jpg"
+                          alt="Notes"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="gallery__image">
+                        <img
+                          src="{{ site.baseurl }}/assets/images/104.jpg"
+                          alt="Rest"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="gallery__image">
+                        <img
+                          src="{{ site.baseurl }}/assets/images/105.jpg"
+                          alt="Hobby"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col col-4 col-d-6 col-t-12">
+                <div class="widget widget-subscribe">
+                  <div class="widget__head">
+                    <h3 class="widget__title">Subscribe to new posts</h3>
+                  </div>
+                  <div class="subscribe__inner">
+                    <div class="subscribe__group">
+                      <div class="subscribe__description">
+                        Subscribe to our newsletter and we’ll send you the
+                        emails of latest posts.
+                      </div>
+                    </div>
+                    <form
+                      class="subscribe-form validate"
+                      action="http://frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3"
+                      method="POST"
+                      id="membedded-subscribe-form"
+                      name="membedded-subscribe-form"
+                      target="_blank"
+                      novalidate
+                    >
+                      <label class="screen-reader-text" for="mce-EMAIL"
+                        >Email address</label
+                      >
+                      <input
+                        class="subscribe-email required email"
+                        id="mce-EMAIL"
+                        type="text"
+                        name="EMAIL"
+                        placeholder="Your email address"
+                      />
+                      <button
+                        class="button button--rounded subscribe-button"
+                        id="membedded-subscribe"
+                        type="submit"
+                        name="subscribe"
+                      >
+                        Subscribe
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__info">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <div class="social">
+            <ul class="social__list list-reset">
+              <li class="social__item">
+                <a
+                  class="social__link"
+                  href="https://x.com/myselfshubhendu"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Twitter link"
+                  ><i class="ion-logo-twitter"></i
+                ></a>
+              </li>
+
+              <li class="social__item">
+                <a
+                  class="social__link"
+                  href="https://github.com/sivolko"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Github link"
+                  ><i class="ion-logo-github"></i
+                ></a>
+              </li>
+
+              <li class="social__item">
+                <a
+                  class="social__link"
+                  href="https://www.youtube.com/@troubleshooterclub"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Youtube link"
+                  ><i class="ion-logo-youtube"></i
+                ></a>
+              </li>
+
+              <li class="social__item">
+                <a
+                  class="social__link"
+                  href="https://www.linkedin.com/in/shubhendu-shubham/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Linkedin link"
+                  ><i class="ion-logo-linkedin"></i
+                ></a>
+              </li>
+
+              <!-- <li class="social__item">
+                <a
+                  class="social__link"
+                  href="https://codepen.io/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Codepen link"
+                  ><i class="ion-logo-codepen"></i
+                ></a>
+              </li> -->
+
+              <li class="social__item">
+                <a
+                  class="social__link"
+                  href="https://spotify.com/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Spotify link"
+                  ><i class="ion-logo-spotify"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="copyright">
+            <script>
+              document.write(new Date().getFullYear());
+            </script> &copy; <a href="/">Infection Detected</a> by Shubhendu
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

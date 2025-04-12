@@ -1,0 +1,210 @@
+---
+layout: default
+---
+
+
+
+
+<body>
+  
+
+  <!-- begin global wrap -->
+  <div class="global-wrap">
+
+  
+  
+    <!-- begin content -->
+    <main class="content" aria-label="Content">
+      <!-- begin hero -->
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner">
+          <div class="hero__left">
+
+            {% if page.tags %}
+            <div class="post-tags">
+              {% for tag in page.tags %}
+              <a href="{{ site.baseurl }}/tags/?tag={{ tag | downcase }}" class="post-tag">{{ tag }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            <h1 class="hero__title">{{ page.title }}</h1>
+
+            {% if page.description %}
+            <p class="post-description">{{ page.description }}</p>
+            {% endif %}
+
+            <div class="post-meta">
+              <a href="{{ site.baseurl }}/about/" class="post-author-image">
+                <img class="lazy" data-src="{{ site.baseurl }}{{ site.author.avatar }}" alt="{{ site.author.name }}">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="{{ site.baseurl }}/about/">{{ site.author.name }}</a>
+                <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B, %Y" }}</time>
+              </div>
+            </div>
+          </div>
+
+          {% if page.image %}
+          <div class="hero__right">
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="{{ site.baseurl }}{{ page.image }}" alt="{{ page.title }}">
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero -->
+
+<!-- begin post -->
+<div class="container animate">
+  <article class="post">
+
+    <div class="post__content">
+      {{ content }}
+    </div>
+
+{% include share.html %}
+
+
+<div class="post__navigation">
+  
+  {% if page.previous.url %}
+  <a class="post__prev" href="{{ site.baseurl }}{{ page.previous.url }}">
+    <div class="prev__image">
+      {% if page.previous.image %}
+      <img class="lazy" data-src="{{ site.baseurl }}{{ page.previous.image }}" alt="{{ page.previous.title }}">
+      {% endif %}
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">{{ page.previous.title }}</h2>
+    </div>
+  </a>
+  {% endif %}
+
+  {% if page.next.url %}
+  <a class="post__next" href="{{ site.baseurl }}{{ page.next.url }}">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">{{ page.next.title }}</h2>
+    </div>
+    <div class="next__image">
+      {% if page.next.image %}
+      <img class="lazy" data-src="{{ site.baseurl }}{{ page.next.image }}" alt="{{ page.next.title }}">
+      {% endif %}
+    </div>
+  </a>
+  {% endif %}
+  
+</div>
+    
+      <!-- begin comments -->
+<div class="show-comments">
+  <button class="button button--rounded disqus-button" id="show-comments-button" onclick="disqus();return false;">Show Comments</button>
+</div>
+
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  var disqus_loaded = false;
+  var disqus_shortname = 'anvod-studio-test';
+  var disqus_container = document.getElementById("disqus_thread");
+  function disqus() {
+    if (!disqus_loaded) {
+      disqus_loaded = true;
+      var e = document.createElement("script");
+      e.type = "text/javascript";
+      e.async = true;
+      e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0])
+        .appendChild(e);
+      // Hide the button after opening
+      document.getElementById("show-comments-button").style.display = "none";
+      // Show disqus comments
+      disqus_container.classList.add("is-open");
+    }
+  }
+</script>
+
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- end comments -->
+    
+
+  </article>
+</div>
+<!-- end post -->
+
+
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h3 class="section__title">You may also like</h3>
+            </div>
+          </div>
+          <div class="row">
+            {% for post in site.related_posts limit:4 %}
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+                <div class="article__head">
+                  <a class="article__image" href="{{ site.baseurl }}{{ post.url }}">
+                    <img class="lazy" data-src="{{ site.baseurl }}{{ post.image }}" alt="{{ post.title }}">
+                  </a>
+                </div>
+                <div class="article__content">
+                  <div class="article__meta">
+                    <a class="article__author__link" href="{{ site.baseurl }}/about/">{{ post.author }}</a> –
+                    <time class="article__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B, %Y" }}</time>
+                  </div>
+                  <h2 class="article__title">
+                    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end related posts -->
+    </main>
+    <!-- end content -->
+
+
+    <!-- begin footer -->
+
+<!-- end footer -->
+  </div>
+  <!-- end global wrap -->
+
+  
+</body>
+
+
+

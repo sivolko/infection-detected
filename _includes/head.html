@@ -3,6 +3,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/favicon/favicon-16x16.png">
+  <link rel="shortcut icon" href="{{ site.baseurl }}/assets/favicon/favicon.ico">
+
   {% if page.url == "/" %}
     <title>{{ site.title }}</title>
     <meta property="og:title" content="{{ site.title }}" />
@@ -39,38 +45,6 @@
   <!-- Ionicons -->
   <link rel="preload" href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" as="style" />
   <link href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" rel="stylesheet" />
-
-  <link rel="manifest" href="/manifest.json">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-        // Immediately check for updates
-        registration.update();
-        
-        // Check for updates when the page loads and every 5 minutes
-        setInterval(() => {
-          registration.update();
-        }, 300000); // 5 minutes
-        
-        // When an update is found, unregister the old one and reload
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              // New service worker is installed and ready to take over
-              registration.unregister().then(() => {
-                window.location.reload();
-              });
-            }
-          });
-        });
-
-        console.log('Service Worker registered with scope:', registration.scope);
-      }).catch(function(error) {
-        console.log('Service Worker registration failed:', error);
-      });
-    }
-  </script>
 
   <script>
     if (localStorage.getItem("theme") === "dark") {

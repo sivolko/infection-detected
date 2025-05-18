@@ -12,7 +12,7 @@ paginate_path: "/page/:num"
 # Author Settings
 author:
   name: Shubhendu
-  avatar: https://media.licdn.com/dms/image/v2/D5622AQGlrbgYFDPgUA/feedshare-shrink_1280/B56ZYdkQWmGsAo-/0/1744252767350?e=1747267200&v=beta&t=lkAJE2tXjf5jSHUYkfOayDETtDK0V8JADg0zuEQSphk
+  avatar: /assets/images/authors/shubhendu.jpg
 
 # Build settings
 markdown: kramdown

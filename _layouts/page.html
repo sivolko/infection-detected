@@ -8,8 +8,13 @@ layout: default
       <div class="col col-12">
         <div class="page__head">
           {% if page.image %}
-          <div class="page__image">
-            <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+          <div class="author-profile">
+            <div class="author-profile__avatar">
+              <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+            </div>
+            {% if page.author_tagline %}
+            <p class="author-profile__desc">{{ page.author_tagline }}</p>
+            {% endif %}
           </div>
           {% endif %}
           <h1 class="page__title">{{ page.title }}</h1>

@@ -2,18 +2,12 @@
 layout: page
 title: About
 permalink: /about/
-# description: Welcome to Infection Detected  - A place where creativity meets hacking
+description: Welcome to Infection Detected - A place where creativity meets hacking
+image: /assets/images/authors/shubhendu.jpg
+author_tagline: "Raised on Bear Grylls' survival shows, now hunts threat for survival."
 ---
 
-<div class="author-profile">
-  <div class="author-profile__avatar">
-    <img src="https://media.licdn.com/dms/image/v2/D5622AQGlrbgYFDPgUA/feedshare-shrink_1280/B56ZYdkQWmGsAo-/0/1744252767350?e=1747267200&v=beta&t=lkAJE2tXjf5jSHUYkfOayDETtDK0V8JADg0zuEQSphk" alt="Shubhendu">
-  </div>
-  <h1 class="author-profile__name">About Me</h1>
-  <p class="author-profile__desc">"Raised on Bear Grylls' survival shows, now hunts threat for survial."</p>
-</div>
-
-### Welcome to Infection Detected 
+## Welcome to Infection Detected 
 
 I'm Shubhendu, a passionate Security Professional dedicated to exploring and sharing insights about cybersecurity, threat hunting, and digital forensics. Through this platform, I aim to make security knowledge accessible and practical for everyone.
 

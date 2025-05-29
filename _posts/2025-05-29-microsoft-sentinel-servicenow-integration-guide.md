@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Bridging the SecOps Gap - Microsoft Sentinel and ServiceNow Integration
-date: 2025-05-29 15:30:00 +00:00
+date: 2025-05-29 08:00:00 +00:00
 author: Shubhendu
 categories: [soc]
 tags: [soc, sentinel, servicenow, integration, siem, automation]

@@ -3,3 +3,11 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+node_modules/
+package-lock.json
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.firebase/
+Gemfile.lock

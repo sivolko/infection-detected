@@ -10,4 +10,3 @@ package-lock.json
 npm-debug.log*
 .env
 .firebase/
-Gemfile.lock

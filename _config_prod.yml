@@ -1,0 +1,60 @@
+# Production-specific configuration
+environment: production
+
+# Enable additional compression
+sass:
+  style: compressed
+  sourcemap: never
+
+# Optimize for production
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# Exclude more files in production
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+  - package.json
+  - package-lock.json
+  - .gitignore
+  - .github/
+  - optimize.sh
+
+# Enable additional plugins for production
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Compress HTML in production
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  blanklines: false
+  profile: false
+  startings: [html, head, body]
+
+# Production URL optimization
+url: "https://infection-detected.web.app"
+
+# Cache settings for production
+incremental: false
+safe: true

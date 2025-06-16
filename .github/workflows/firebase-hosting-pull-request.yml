@@ -37,6 +37,14 @@ jobs:
       - name: 🔧 Install Node dependencies
         run: npm ci --only=dev
 
+      # Create missing search file if it doesn't exist
+      - name: 📄 Create missing search file
+        run: |
+          if [ ! -f "assets/js/simple-jekyll-search.min.js" ]; then
+            echo "Creating missing simple-jekyll-search.min.js..."
+            curl -s -o assets/js/simple-jekyll-search.min.js https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js
+          fi
+
       # Cache Jekyll build
       - name: 🗂️ Cache Jekyll build
         uses: actions/cache@v3
@@ -56,7 +64,7 @@ jobs:
           JEKYLL_ENV: development
 
       # Verify build output
-      - name: 🔍 Verify build output
+      - name: 📋 Verify build output
         run: |
           echo "Preview build completed. Site structure:"
           ls -la _site/

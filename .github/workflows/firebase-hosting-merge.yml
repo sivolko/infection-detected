@@ -36,14 +36,22 @@ jobs:
       - name: 🔧 Install Node dependencies
         run: npm ci --only=dev
 
+      # Create missing search file if it doesn't exist
+      - name: 📄 Create missing search file
+        run: |
+          if [ ! -f "assets/js/simple-jekyll-search.min.js" ]; then
+            echo "Creating missing simple-jekyll-search.min.js..."
+            curl -s -o assets/js/simple-jekyll-search.min.js https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js
+          fi
+
       # Commit updated Gemfile.lock if it was regenerated
-      - name: 🔒 Commit updated Gemfile.lock
+      - name: 💾 Commit updated Gemfile.lock
         run: |
           if [ -n "$(git status --porcelain Gemfile.lock)" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add Gemfile.lock
-            git commit -m "🔒 Update Gemfile.lock with Ruby 3.2 compatible gems" || true
+            git commit -m "💾 Update Gemfile.lock with Ruby 3.2 compatible gems" || true
             git push
           fi
 
@@ -66,7 +74,7 @@ jobs:
           JEKYLL_ENV: production
 
       # Verify build output
-      - name: 🔍 Verify build output
+      - name: 📋 Verify build output
         run: |
           echo "Build completed. Site structure:"
           ls -la _site/

@@ -30,21 +30,21 @@
           title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
       </li>
       <li class="share__item">
+        <a class="share__link share__whatsapp"
+          href="https://wa.me/?text={{ share_title | url_encode }}%20{{ share_url | url_encode }}"
+          title="Share on WhatsApp" rel="nofollow"><i class="ion ion-md-chatbubbles"></i></a>
+      </li>
+      <li class="share__item">
         <a class="share__link share__reddit"
           href="https://reddit.com/submit?url={{ share_url | url_encode }}&amp;title={{ share_title | url_encode }}"
           onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
           title="Share on Reddit" rel="nofollow"><i class="ion ion-logo-reddit"></i></a>
       </li>
       <li class="share__item">
-        <a class="share__link share__whatsapp"
-          href="https://wa.me/?text={{ share_title | url_encode }}%20{{ share_url | url_encode }}"
-          title="Share on WhatsApp" rel="nofollow"><i class="ion ion-logo-whatsapp"></i></a>
-      </li>
-      <li class="share__item">
         <a class="share__link share__copy"
           href="#"
-          onclick="navigator.clipboard.writeText('{{ share_url }}'); this.innerHTML='<i class=\'ion ion-checkmark\'></i>'; setTimeout(() => { this.innerHTML='<i class=\'ion ion-copy\'></i>'; }, 2000); return false;"
-          title="Copy link" rel="nofollow"><i class="ion ion-copy"></i></a>
+          onclick="navigator.clipboard.writeText('{{ share_url }}'); this.innerHTML='<i class=\'ion ion-md-checkmark\'></i>'; setTimeout(() => { this.innerHTML='<i class=\'ion ion-md-link\'></i>'; }, 2000); return false;"
+          title="Copy link" rel="nofollow"><i class="ion ion-md-link"></i></a>
       </li>
     </ul>
   </div>

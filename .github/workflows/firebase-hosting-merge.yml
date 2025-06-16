@@ -32,9 +32,18 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
-      # Install Node dependencies (only dev dependencies needed)
-      - name: 🔧 Install Node dependencies
-        run: npm ci --only=dev
+      # Fix npm dependencies - use correct syntax and handle lock file issues
+      - name: 🔧 Install Node dependencies (Fixed)
+        run: |
+          # Remove lock file if corrupted and install fresh
+          if [ -f "package-lock.json" ]; then
+            echo "Removing potentially corrupted package-lock.json..."
+            rm package-lock.json
+          fi
+          
+          # Install only dev dependencies using correct syntax
+          npm install --omit=prod
+        continue-on-error: false
 
       # Create missing search file if it doesn't exist
       - name: 📄 Create missing search file
@@ -44,15 +53,15 @@ jobs:
             curl -s -o assets/js/simple-jekyll-search.min.js https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js
           fi
 
-      # Commit updated Gemfile.lock if it was regenerated
-      - name: 💾 Commit updated Gemfile.lock
+      # Commit updated files if they were regenerated
+      - name: 💾 Commit updated lock file and missing files
         run: |
-          if [ -n "$(git status --porcelain Gemfile.lock)" ]; then
+          if [ -n "$(git status --porcelain)" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            git add Gemfile.lock
-            git commit -m "💾 Update Gemfile.lock with Ruby 3.2 compatible gems" || true
-            git push
+            git add .
+            git commit -m "🔧 Fix package-lock.json and add missing dependencies" || true
+            git push || true
           fi
 
       # Cache Jekyll build

@@ -1,82 +1,32 @@
-# Optimized Firebase Hosting deployment workflow
-name: Deploy to Firebase Hosting on merge
+# Simple Firebase Hosting deployment
+name: Deploy to Firebase
 on:
   push:
     branches:
       - main
 
-env:
-  RUBY_VERSION: '3.3.0'
-  NODE_VERSION: '18'
-
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Ruby setup with explicit bundler configuration
-      - name: 💎 Setup Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ env.RUBY_VERSION }}
+          ruby-version: '3.3.0'
           bundler-cache: true
-      
-      - name: 🔧 Configure Bundler
-        run: |
-          gem install bundler
-          bundle config set --local path 'vendor/bundle'
-          bundle install --jobs 4 --retry 3
 
-      # Node.js setup without npm cache (no lock file)
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: bundle install
 
-      # Install Node dependencies
-      - name: 🔧 Install Node dependencies
-        run: npm install --omit=prod
-
-      # Create missing search file if it doesn't exist
-      - name: 📄 Create missing search file
-        run: |
-          if [ ! -f "assets/js/simple-jekyll-search.min.js" ]; then
-            echo "Creating missing simple-jekyll-search.min.js..."
-            curl -s -o assets/js/simple-jekyll-search.min.js https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js
-          fi
-
-      # Cache Jekyll build
-      - name: 🗂️ Cache Jekyll build
-        uses: actions/cache@v3
-        with:
-          path: |
-            .jekyll-cache
-            _site
-          key: ${{ runner.os }}-jekyll-${{ hashFiles('_config.yml', '_config_prod.yml', 'Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-jekyll-
-
-      # Build Jekyll site with production configuration
-      - name: 🏗️ Build Jekyll site (Production)
-        run: |
-          bundle exec jekyll build --config _config.yml,_config_prod.yml --trace
+      - name: Build site
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
-      # Verify build output
-      - name: 📋 Verify build output
-        run: |
-          echo "Build completed. Site structure:"
-          ls -la _site/
-          echo "Total files: $(find _site -type f | wc -l)"
-          echo "Site size: $(du -sh _site)"
-
-      # Deploy to Firebase Hosting
-      - name: 🚀 Deploy to Firebase Hosting
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

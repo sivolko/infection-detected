@@ -19,6 +19,7 @@ Understanding the project structure and codebase.
 
 | Document | Description | Read Time |
 |----------|-------------|-----------|
+| [**System Architecture** 🆕](./ARCHITECTURE.md) | **Complete architectural documentation** | **20 min** |
 | [Project Architecture](./PROJECT_ARCHITECTURE.md) | System design and structure | 10 min |
 | [Code Optimization Summary](./CODE_OPTIMIZATION_SUMMARY.md) | Codebase improvements overview | 8 min |
 
@@ -55,7 +56,7 @@ Bug fixes, dependency updates, and maintenance logs.
 → [Quick Performance Guide](./QUICK_PERFORMANCE_GUIDE.md) → [Performance Round 2](./PERFORMANCE_ROUND2.md)
 
 #### Understand the Architecture
-→ [Project Architecture](./PROJECT_ARCHITECTURE.md) → [Code Optimization Summary](./CODE_OPTIMIZATION_SUMMARY.md)
+→ [**System Architecture (NEW)**](./ARCHITECTURE.md) → [Project Architecture](./PROJECT_ARCHITECTURE.md) → [Code Optimization Summary](./CODE_OPTIMIZATION_SUMMARY.md)
 
 #### Fix Build Issues
 → [Development Guide](./DEVELOPMENT_GUIDE.md#troubleshooting) → [CI/CD Fixes](./CI_CD_FIXES_APPLIED.md)
@@ -70,10 +71,10 @@ Bug fixes, dependency updates, and maintenance logs.
 
 ## 📊 Documentation Stats
 
-- **Total Documents**: 12
+- **Total Documents**: 13
 - **Categories**: 4
-- **Total Reading Time**: ~2 hours
-- **Last Updated**: October 5, 2025
+- **Total Reading Time**: ~2.5 hours
+- **Last Updated**: January 10, 2025
 
 ---
 
@@ -89,6 +90,7 @@ Bug fixes, dependency updates, and maintenance logs.
 
 | Document | Status | Last Updated |
 |----------|--------|--------------|
+| **System Architecture (NEW)** | ✅ Current | Jan 10, 2025 |
 | Quick Start Guide | ✅ Current | Oct 5, 2025 |
 | Development Guide | ✅ Current | Oct 5, 2025 |
 | Project Architecture | ✅ Current | Oct 5, 2025 |
@@ -105,6 +107,13 @@ Bug fixes, dependency updates, and maintenance logs.
 ---
 
 ## 🆕 Recent Updates
+
+### January 10, 2025
+- 🏗️ **Created comprehensive ARCHITECTURE.md** - Complete system architecture documentation
+- 📖 Enhanced main README.md with better structure and visuals
+- 📊 Added detailed architectural diagrams
+- 🔄 Documented data flow and deployment architecture
+- 🛠️ Included technology stack details and decision rationale
 
 ### October 5, 2025
 - 📁 Organized all documentation into `docs/` folder

@@ -10,23 +10,23 @@
       <!-- end header -->
 
       <!-- begin search -->
-      <div class="search">
+      <div class="search" role="dialog" aria-modal="true" aria-labelledby="search-label">
         <div class="container">
           <div class="row">
             <div class="col col-12">
               <div class="search__box">
                 <div class="search__group">
-                  <i class="search-input-icon ion ion-ios-search"></i>
-                  <i class="icon__search__close ion ion-md-close"></i>
-                  <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
-                  <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+                  <i class="search-input-icon ion ion-ios-search" aria-hidden="true"></i>
+                  <i class="icon__search__close ion ion-md-close" aria-hidden="true"></i>
+                  <label for="js-search-input" class="screen-reader-text" id="search-label">Search for Blog</label>
+                  <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search..." aria-describedby="search-label">
                 </div>
-                <div class="search-results-list" id="js-results-container"></div>
+                <div class="search-results-list" id="js-results-container" role="region" aria-live="polite"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="search__overlay"></div>
+        <div class="search__overlay" role="button" tabindex="0" aria-label="Close search"></div>
       </div>
       <!-- end search -->
 
@@ -88,9 +88,9 @@
       </main>
       <!-- end content -->
 
-      <div class="top" title="Top">
-        <i class="ion ion-md-arrow-round-up"></i>
-      </div>
+      <button class="top" title="Scroll to top" aria-label="Scroll to top">
+        <i class="ion ion-md-arrow-round-up" aria-hidden="true"></i>
+      </button>
 
       <!-- begin footer -->
       {% include footer.html %}
@@ -98,6 +98,6 @@
     </div>
     <!-- end global wrap -->
 
-    {% include scripts.html %}
+    {% include scripts-optimized.html %}
   </body>
 </html>

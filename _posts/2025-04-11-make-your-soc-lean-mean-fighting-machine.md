@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Make Your Security Operation Center a Lean, Mean Fighting Machine
+title: "Make Your Security Operation Center a Lean, Mean Fighting Machine"
 date: 2025-04-11 12:01:35 +00:00
 author: Shubhendu
 categories: [soc]
 tags: [soc]
-image: https://digitalpress.fra1.cdn.digitaloceanspaces.com/4h42als/2024/01/global-security-operation-center.png
+image: "https://digitalpress.fra1.cdn.digitaloceanspaces.com/4h42als/2024/01/global-security-operation-center.png"
 popular: true
 featured: true
 ---

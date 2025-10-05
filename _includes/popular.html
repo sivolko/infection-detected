@@ -14,10 +14,25 @@
                     class="article__image"
                     href="{{ post.url | relative_url }}"
                   >
-                    <img
-                      src="{{ post.image | relative_url }}"
-                      alt="{{ post.title }}"
-                    />
+                    {% if post.image contains 'http://' or post.image contains 'https://' %}
+                      <img
+                        class="lazy"
+                        data-src="{{ post.image }}"
+                        alt="{{ post.title }}"
+                        width="400"
+                        height="225"
+                        loading="lazy"
+                      />
+                    {% else %}
+                      <img
+                        class="lazy"
+                        data-src="{{ post.image | relative_url }}"
+                        alt="{{ post.title }}"
+                        width="400"
+                        height="225"
+                        loading="lazy"
+                      />
+                    {% endif %}
                   </a>
                 </div>
   

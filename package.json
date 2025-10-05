@@ -4,22 +4,50 @@
   "description": "A platform for security engineer, Threat Hunter, and CTF player to share their knowledge and experience.",
   "scripts": {
     "install": "bundle install",
-    "build": "bundle exec jekyll build --config _config.yml,_config_prod.yml",
+    "prebuild": "npm run clean",
+    "build": "chmod +x build-production.sh && ./build-production.sh",
+    "build:quick": "bundle exec jekyll build --config _config.yml,_config_prod.yml && npm run minify:all",
     "build:dev": "bundle exec jekyll build",
-    "serve": "bundle exec jekyll serve --livereload",
+    "serve": "bundle exec jekyll serve --livereload --incremental",
+    "serve:drafts": "bundle exec jekyll serve --livereload --drafts",
     "clean": "bundle exec jekyll clean",
-    "deploy": "firebase deploy"
+    "optimize:images": "chmod +x optimize-images.sh && ./optimize-images.sh",
+    "minify:css": "csso _site/assets/css/main.css --output _site/assets/css/main.css",
+    "minify:js": "terser _site/assets/js/app.js --compress passes=2,drop_console=true --mangle --output _site/assets/js/app.min.js && terser _site/assets/js/scripts.js --compress passes=2 --mangle --output _site/assets/js/scripts.min.js",
+    "minify:all": "npm run minify:js",
+    "test": "bundle exec htmlproofer ./_site --disable-external --allow-hash-href",
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy",
+    "deploy:preview": "firebase hosting:channel:deploy preview",
+    "lint:html": "bundle exec htmlproofer ./_site --disable-external",
+    "check": "bundle exec jekyll doctor"
   },
   "devDependencies": {
-    "firebase-tools": "^12.0.0"
+    "csso-cli": "^4.0.2",
+    "firebase-tools": "^13.0.0",
+    "terser": "^5.44.0"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/sivolko/infection-detected.git"
   },
+  "keywords": [
+    "security",
+    "blog",
+    "jekyll",
+    "cybersecurity",
+    "threat-hunting",
+    "ctf"
+  ],
   "author": "Shubhendu",
-  "license": "MIT"
+  "license": "MIT",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
+  ]
 }

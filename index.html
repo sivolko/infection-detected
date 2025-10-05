@@ -11,13 +11,23 @@ layout: default
           {% if post.image %}
           <div class="article__head">
             <a class="article__image" href="{{ post.url | prepend: site.baseurl }}">
-              <img class="lazy" 
-                   data-src="{{ site.baseurl }}{{ post.image }}" 
-                   alt="{{ post.title }}" 
-                   loading="lazy" 
-                   decoding="async" 
-                   width="400" 
-                   height="200">
+              {% if post.image contains 'http://' or post.image contains 'https://' %}
+                <img class="lazy" 
+                     data-src="{{ post.image }}" 
+                     alt="{{ post.title }}" 
+                     loading="lazy" 
+                     decoding="async" 
+                     width="400" 
+                     height="200">
+              {% else %}
+                <img class="lazy" 
+                     data-src="{{ site.baseurl }}{{ post.image }}" 
+                     alt="{{ post.title }}" 
+                     loading="lazy" 
+                     decoding="async" 
+                     width="400" 
+                     height="200">
+              {% endif %}
             </a>
           </div>
           {% endif %}

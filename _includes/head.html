@@ -7,7 +7,18 @@
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="dns-prefetch" href="//unpkg.com">
+  <link rel="dns-prefetch" href="//digitalpress.fra1.cdn.digitaloceanspaces.com">
+  <link rel="dns-prefetch" href="//res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://digitalpress.fra1.cdn.digitaloceanspaces.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
+  <meta name="theme-color" content="#ff009f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/favicon/apple-touch-icon.png">
@@ -37,36 +48,48 @@
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
   <meta property="og:site_name" content="{{ site.title }}" />
   <meta property="og:image" content="{{ site.url }}{{ '/assets/images/og-image-optimized.jpg' | relative_url }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{{ site.title }} - {{ site.description }}" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-  <meta name="twitter:image:src" content="{{ site.url }}{{ '/assets/images/og-image-optimized.jpg' | relative_url }}" />
+  <meta name="twitter:image" content="{{ site.url }}{{ '/assets/images/og-image-optimized.jpg' | relative_url }}" />
+  <meta name="twitter:image:alt" content="{{ site.title }} - {{ site.description }}" />
 
   <!-- Critical CSS - inline the most important styles -->
   <style>
-    body{font-family:Inter,sans-serif;margin:0;padding:0;line-height:1.6}
+    body{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;margin:0;padding:0;line-height:1.6}
     .header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
     .article{margin-bottom:2rem;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-    .article__image img{width:100%;height:200px;object-fit:cover}
+    .article__image{position:relative;padding-bottom:56.25%;overflow:hidden;background:#f0f0f0}
+    .article__image img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
     .lazy{opacity:0;transition:opacity 0.3s}
     .lazy.loaded{opacity:1}
+    .featured-post,.popular-posts{contain:layout style paint}
   </style>
 
-  <!-- Optimized font loading -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Optimized font loading with font-display swap and reduced weights -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Defer Ionicons -->
   <link rel="preload" href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" rel="stylesheet"></noscript>
 
+  <!-- Critical inline script for theme - prevents FOUC -->
   <script>
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.setAttribute("dark", "");
-      document.documentElement.classList.add("dark-mode");
-    }
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('dark', '');
+        document.documentElement.classList.add('dark-mode');
+      }
+    })();
   </script>
 
   {% include analytics.html %}

@@ -1,0 +1,234 @@
+// Performance and Utility Mixins
+
+// ==========================================
+// Performance Optimizations
+// ==========================================
+
+// GPU-accelerated animations
+@mixin gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+// Will-change for animations
+@mixin will-change($properties...) {
+  will-change: $properties;
+}
+
+// Smooth scrolling
+@mixin smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+// ==========================================
+// Modern CSS Features
+// ==========================================
+
+// Container queries ready
+@mixin container($name: null) {
+  @if $name {
+    container-name: $name;
+  }
+  container-type: inline-size;
+}
+
+// Aspect ratio (with fallback)
+@mixin aspect-ratio($width, $height) {
+  aspect-ratio: $width / $height;
+  
+  @supports not (aspect-ratio: 1) {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      padding-bottom: calc(#{$height} / #{$width} * 100%);
+    }
+  }
+}
+
+// ==========================================
+// Image Optimization
+// ==========================================
+
+// Responsive images
+@mixin responsive-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Object fit with fallback
+@mixin object-fit($fit: cover, $position: center) {
+  object-fit: $fit;
+  object-position: $position;
+  font-family: 'object-fit: #{$fit}; object-position: #{$position}'; // Polyfill
+}
+
+// Lazy loading placeholder
+@mixin lazy-placeholder {
+  background: linear-gradient(
+    90deg,
+    var(--lighten-gray) 0%,
+    var(--light-gray) 50%,
+    var(--lighten-gray) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// ==========================================
+// Typography
+// ==========================================
+
+// Fluid typography
+@mixin fluid-type($min-size, $max-size, $min-viewport: 320px, $max-viewport: 1200px) {
+  font-size: $min-size;
+  
+  @media (min-width: $min-viewport) {
+    font-size: calc(#{$min-size} + (#{strip-unit($max-size)} - #{strip-unit($min-size)}) * ((100vw - #{$min-viewport}) / (#{strip-unit($max-viewport)} - #{strip-unit($min-viewport)})));
+  }
+  
+  @media (min-width: $max-viewport) {
+    font-size: $max-size;
+  }
+}
+
+// Text truncation
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ==========================================
+// Layout
+// ==========================================
+
+// Flexbox shortcuts
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Grid auto-fit
+@mixin auto-grid($min-column-size: 250px, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-column-size, 1fr));
+  gap: $gap;
+}
+
+// ==========================================
+// Accessibility
+// ==========================================
+
+// Screen reader only
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Focus visible (keyboard navigation)
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+  }
+}
+
+// Reduce motion for accessibility
+@mixin reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// ==========================================
+// Utilities
+// ==========================================
+
+// Strip unit from number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// Convert px to rem
+@function rem($px) {
+  @return ($px / 16px) * 1rem;
+}
+
+// ==========================================
+// Modern Shadows
+// ==========================================
+
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  } @else if $level == 2 {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  } @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+  } @else if $level == 4 {
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+  } @else if $level == 5 {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// ==========================================
+// Performance Classes
+// ==========================================
+
+// Add to elements that will animate
+.will-animate {
+  @include will-change(transform, opacity);
+}
+
+// Lazy loaded images
+.lazy {
+  @include lazy-placeholder;
+  
+  &.loaded {
+    animation: none;
+    background: none;
+  }
+}
+
+// Disable animations class (for theme switching)
+.disable-animation,
+.disable-animation * {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}

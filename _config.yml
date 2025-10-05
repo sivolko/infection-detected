@@ -37,6 +37,13 @@ sass:
     - _sass
     - assets/css
 
+# Jekyll Performance Optimizations
+incremental: false  # Set to true for faster builds during development
+strict_front_matter: true
+liquid:
+  error_mode: strict
+  strict_filters: true
+
 # Assets
 assets:
   sources:
@@ -48,12 +55,23 @@ assets:
 exclude:
   - .sass-cache/
   - .jekyll-cache/
+  - Gemfile
   - Gemfile.lock
   - node_modules/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - package.json
+  - package-lock.json
+  - README.md
+  - LICENSE
+  - docs/
+  - "*.sh"
+  - .nvmrc
+  - .ruby-version
+  - .gitignore
+  - .github/
 
 # Defaults
 defaults:

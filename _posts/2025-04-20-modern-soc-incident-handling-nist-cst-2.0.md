@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Modern SOC Incident Handling:FT CSF 2.0
+title: "Modern SOC Incident Handling: NIST CSF 2.0"
 date: 2025-04-20 12:01:35 +00:00
 author: Shubhendu
 categories: [soc]
 tags: [soc]
-image: https://res.cloudinary.com/hugs4bugs/image/upload/v1745158021/hugs4bugs/Screenshot_20-4-2025_193641_nvlpubs.nist.gov_k2y0h5.jpg
+image: "https://res.cloudinary.com/hugs4bugs/image/upload/v1745158021/hugs4bugs/Screenshot_20-4-2025_193641_nvlpubs.nist.gov_k2y0h5.jpg"
 popular: true
 featured: true
 ---

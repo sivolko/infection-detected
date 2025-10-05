@@ -17,9 +17,14 @@
                       class="recent-posts__image"
                       href="{{ post.url }}"
                     >
+                      {% if post.image %}
+                        {% assign image_url = post.image %}
+                      {% else %}
+                        {% assign image_url = '/assets/images/default.jpg' | prepend: site.baseurl %}
+                      {% endif %}
                       <img
                         class="lazy"
-                        data-src="{{ post.image | default: site.baseurl + '/assets/images/default.jpg' }}"
+                        data-src="{{ image_url }}"
                         alt="{{ post.title }}"
                       />
                     </a>

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Bridging the SecOps Gap - Microsoft Sentinel and ServiceNow Integration
+title: "Bridging the SecOps Gap - Microsoft Sentinel and ServiceNow Integration"
 date: 2025-05-29 08:00:00 +00:00
 author: Shubhendu
 categories: [soc]
 tags: [soc, sentinel, servicenow, integration, siem, automation]
-image: https://digitalpress.fra1.cdn.digitaloceanspaces.com/4h42als/2024/01/global-security-operation-center.png
+image: "https://digitalpress.fra1.cdn.digitaloceanspaces.com/4h42als/2024/01/global-security-operation-center.png"
 popular: true
 featured: true
 ---

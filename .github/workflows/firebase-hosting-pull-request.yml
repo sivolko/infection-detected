@@ -8,8 +8,8 @@ permissions:
   pull-requests: write
 
 env:
-  RUBY_VERSION: '3.2'
-  NODE_VERSION: '20'
+  RUBY_VERSION: '3.3.0'
+  NODE_VERSION: '18'
 
 jobs:
   build_and_preview:
@@ -19,12 +19,18 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      # Ruby setup with caching
-      - name: 💎 Setup Ruby with bundler cache
+      # Ruby setup with explicit bundler configuration
+      - name: 💎 Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
+      
+      - name: 🔧 Configure Bundler
+        run: |
+          gem install bundler
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
 
       # Node.js setup without npm cache (no lock file)
       - name: 📦 Setup Node.js

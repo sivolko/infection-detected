@@ -1,0 +1,74 @@
+name: Deploy to Firebase
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.0'
+          bundler-cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
+          npm ci
+
+      - name: Build Jekyll site
+        env:
+          JEKYLL_ENV: production
+        run: |
+          # Build with production config
+          if [ -f "_config_prod.yml" ]; then
+            bundle exec jekyll build --config _config.yml,_config_prod.yml
+          else
+            bundle exec jekyll build
+          fi
+
+      - name: Minify JavaScript (Production)
+        run: |
+          # Install terser globally
+          npm install -g terser
+          
+          # Minify app.js if it exists
+          if [ -f "_site/assets/js/app.js" ]; then
+            terser _site/assets/js/app.js \
+              --compress passes=2,drop_console=true \
+              --mangle \
+              --output _site/assets/js/app.min.js
+            echo "✓ Minified app.js"
+          fi
+          
+          # Minify scripts.js if it exists
+          if [ -f "_site/assets/js/scripts.js" ]; then
+            terser _site/assets/js/scripts.js \
+              --compress passes=2 \
+              --mangle \
+              --output _site/assets/js/scripts.min.js
+            echo "✓ Minified scripts.js"
+          fi
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_INFECTION_DETECTED }}'
+          channelId: live
+          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}

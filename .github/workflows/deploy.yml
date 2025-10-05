@@ -27,7 +27,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '3.3.0'
           bundler-cache: true
 
       - name: Setup Node.js
@@ -38,13 +38,27 @@ jobs:
 
       - name: Install dependencies
         run: |
-          bundle install
+          gem install bundler
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
           npm ci
 
+      - name: Minify JavaScript
+        run: |
+          npm install -g terser
+          mkdir -p _site/assets/js
+          
       - name: Build with Jekyll
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --config _config.yml,_config_prod.yml
+        run: |
+          bundle exec jekyll build --config _config.yml,_config_prod.yml
+          if [ -f "_site/assets/js/app.js" ]; then
+            terser _site/assets/js/app.js --compress --mangle --output _site/assets/js/app.min.js
+          fi
+          if [ -f "_site/assets/js/scripts.js" ]; then
+            terser _site/assets/js/scripts.js --compress --mangle --output _site/assets/js/scripts.min.js
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
